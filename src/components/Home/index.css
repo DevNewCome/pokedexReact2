@@ -1,0 +1,106 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    background-color: rgb(252, 252, 252);
+}
+
+.pokemon-container{
+    border: 3px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 300px;
+    min-height: 400px;
+    margin: 10px;
+    background-color: #F2F2F2;
+    border-radius: 20px;
+}
+
+.pokemon-container:hover{
+    transform: scale(1.02);
+    transition: all;
+}
+
+.descriptionPokemon{
+    color: #fff;
+    background-color: #c8c9c9;
+    width: 90%;
+    border-radius: 10px;
+}
+
+.descriptionPokemon span{
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.classePokemon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+   
+}
+
+.classePokemon ul{
+    display: flex;
+    flex-direction: column; 
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.classePokemon li{
+    display: flex;
+    flex-direction: column; 
+    background-color: purple;
+    margin-top: 4px;
+    width: 100px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.classePokemon span{
+    display: flex; 
+}
+
+.nomePokemon{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.classePokemon h2{
+    color: rgb(0, 0, 0);
+}
+
+
+.nomePokemon h2{
+    color: rgb(0, 0, 0);
+}
+
+.nomePokemon span{
+    color: yellow;
+}
+.habilidades{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #c8c9c9;
+    color: #fff;
+    width: 90%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.habilidades h2{
+    color: red;
+}
+
+.habilidades span{
+   font-size: 19px;
+    
+}
