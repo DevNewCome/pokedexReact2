@@ -1,9 +1,30 @@
+*{
+    
+}
+
 .container{
     display: flex;
     justify-content: center;
     margin: 0 auto;
     flex-wrap: wrap;
     background-color: rgb(252, 252, 252);
+}
+
+.inputs{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    
+}
+
+.inputs input{
+    width: 400px;
+    margin: 10px;
+    border-radius: 15px;
+    padding: 9px;
+    outline: none;
+    background-color:#eaeaea;
+    border: none;
 }
 
 .pokemon-container{
@@ -18,11 +39,12 @@
     margin: 10px;
     background-color: #F2F2F2;
     border-radius: 20px;
+    
 }
 
 .pokemon-container:hover{
     transform: scale(1.02);
-    transition: all;
+    transition: all 0.2s;
 }
 
 .descriptionPokemon{
@@ -30,6 +52,7 @@
     background-color: #c8c9c9;
     width: 90%;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .descriptionPokemon span{
@@ -72,6 +95,7 @@
     gap: 20px;
 }
 
+
 .classePokemon h2{
     color: rgb(0, 0, 0);
 }
@@ -81,9 +105,7 @@
     color: rgb(0, 0, 0);
 }
 
-.nomePokemon span{
-    color: yellow;
-}
+
 .habilidades{
     display: flex;
     flex-direction: column;
@@ -103,4 +125,9 @@
 .habilidades span{
    font-size: 19px;
     
+}
+
+.nomePokemon span{
+    color: yellow;
+    font-size: 30px;
 }
