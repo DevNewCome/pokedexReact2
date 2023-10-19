@@ -17,7 +17,7 @@ export default function Home() {
       try {
         const pokemons = [];
 
-        for (let i = 1; i <= 50; i++) {
+        for (let i = 1; i <= 28; i++) {
           const pokemonResponse = await Api.get(`/${i}`);
           pokemons.push(pokemonResponse.data);
         }
@@ -48,7 +48,6 @@ export default function Home() {
   const clearSearch = () => {
     setNomePokemon('');
     setPesquisa(null);
-    setFiltrados([]);
     navigate('/');
   };
 
