@@ -28,7 +28,7 @@
 }
 
 .pokemon-container{
-    border: 3px solid rgb(0, 0, 0);
+    
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -66,6 +66,31 @@
     align-items: center;
     margin-top: 5px;
    
+}
+
+.link{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    list-style: none;
+    text-decoration: none;
+    border-radius: 2px solid blue;
+    background-color: rgb(255, 255, 255);
+    width: 100px;
+    border-radius: 10px;
+    padding: 5px;
+    color: black;
+}
+
+.link:hover{
+    background-color: #eef2f2;
+}
+
+.image-pokemon{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 .classePokemon ul{
