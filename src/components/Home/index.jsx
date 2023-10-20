@@ -10,6 +10,7 @@ export default function Home() {
   const [nomePokemon, setNomePokemon] = useState('');
   const [pesquisa, setPesquisa] = useState(null);
   const [filtrados, setFiltrados] = useState([]);
+  const [filterClass, setFilterClass] = useState('')
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export default function Home() {
       try {
         const pokemons = [];
 
-        for (let i = 1; i <= 28; i++) {
+        for (let i = 1; i <= 100; i++) {
           const pokemonResponse = await Api.get(`/${i}`);
           pokemons.push(pokemonResponse.data);
         }
@@ -48,8 +49,12 @@ export default function Home() {
   const clearSearch = () => {
     setNomePokemon('');
     setPesquisa(null);
+    setFilterClass(''); // Reset the filterClass state to its initial value
     navigate('/');
+    // Reset the filtrados state to the original pokemonData
+    setFiltrados(pokemonData);
   };
+  
 
   useEffect(() => {
     const filteredData = pokemonData.filter((pokemon) =>
@@ -57,6 +62,27 @@ export default function Home() {
     );
     setFiltrados(filteredData);
   }, [pokemonData, nomePokemon]);
+
+  console.log(filterClass)
+
+// Define your filter function
+const filterPokemonByType = () => {
+  if (filterClass === '') {
+    // If filterClass is empty, display all Pokémon
+    setFiltrados(pokemonData);
+  } else {
+    const classFilter = pokemonData.filter((pokemon) => {
+      return pokemon.types.some((type) => type.type.name === filterClass);
+    });
+    setFiltrados(classFilter);
+  }
+};
+
+useEffect(() => {
+  filterPokemonByType(); // Call the filtering function
+}, [pokemonData, filterClass]);
+
+
 
   return (
     <>
@@ -68,7 +94,18 @@ export default function Home() {
           value={nomePokemon}
           onChange={(e) => setNomePokemon(e.target.value)}
         />
-        <button onClick={clearSearch}>Limpar Pesquisa</button>
+        <button onClick={clearSearch}>Limpar e voltar</button>
+        <select name="" id="" onChange={(e) => setFilterClass(e.target.value)}>
+        <option value="normal" >normal</option>
+        <option value="water" >water</option>
+        <option value="electric" >eletric</option>
+        <option value="flying">flying</option>
+        <option value="fire" >fire</option>
+        <option value="poison" >poison</option>
+        <option value="grass" >grass</option>
+        <option value="bug" >bug</option>
+        <option value="ground" >ground</option>
+      </select>
       </div>
       <div className='container'>
         {pesquisa ? (

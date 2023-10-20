@@ -10,10 +10,12 @@
 .sobre{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
-    border: 2px solid blue;
+    border-radius: 10px;
     padding: 5px;
     height: 500px;
+    max-width: 90%;
     width: 800px;
     background-color: rgb(255, 255, 255);
 }
@@ -39,6 +41,7 @@
 .skills{
     border: 2px solid rgb(52, 225, 167);
     display: flex;
+    flex-wrap: wrap;
     justify-content: start;
     width: 80%;
     margin: 0 auto;
