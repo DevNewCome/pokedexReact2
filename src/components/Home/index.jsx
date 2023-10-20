@@ -18,7 +18,7 @@ export default function Home() {
       try {
         const pokemons = [];
 
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 30; i++) {
           const pokemonResponse = await Api.get(`/${i}`);
           pokemons.push(pokemonResponse.data);
         }
@@ -82,15 +82,21 @@ useEffect(() => {
   filterPokemonByType(); // Call the filtering function
 }, [pokemonData, filterClass]);
 
-
+const  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+}
 
   return (
     <>
+    <button className='top' onClick={scrollToTop}>top</button>
       <div className='inputs'>
         <input
           type="text"
           onKeyDown={enterClique}
-          placeholder='Digite o nome do Pokémon e pressione Enter'
+          placeholder='Não encontrou ? Pesquise o nome do seu pokemon'
           value={nomePokemon}
           onChange={(e) => setNomePokemon(e.target.value)}
         />
@@ -134,7 +140,7 @@ useEffect(() => {
                   </span>
                 ))}
               </div>
-              <Link to={`/sobre/${pesquisa.id}`}>Ver Sobre</Link>
+              <Link className='link' to={`/sobre/${pesquisa.id}`}>Ver Sobre</Link>
             </div>
           </div>
         ) : (
