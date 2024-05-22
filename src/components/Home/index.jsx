@@ -17,22 +17,31 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const pokemons = [];
-
-        for (let i = 1; i <= 300; i++) {
-          const pokemonResponse = await Api.get(`/${i}`);
-          pokemons.push(pokemonResponse.data);
+        try {
+            const pokemons = await fetchAllPokemons();
+            setPokemonData(pokemons);
+        } catch (error) {
+            console.log(error);
         }
-
-        setPokemonData(pokemons);
-      } catch (error) {
-        console.log(error);
-      }
     };
 
     fetchData();
-  }, []);
+}, []);
+
+const fetchAllPokemons = async () => {
+    const pokemons = [];
+
+    for (let i = 1; i <= 100; i++) {
+        try {
+            const pokemonResponse = await Api.get(`/${i}`);
+            pokemons.push(pokemonResponse.data);
+        } catch (error) {
+            console.log('Erro ao buscar Pokémon', error);
+        }
+    }
+
+    return pokemons;
+};
 
   useEffect(() => {
     filterPokemonByType(); // Chamando a função de filtro inicialmente
@@ -68,6 +77,10 @@ export default function Home() {
   };
 
   const searchPokemon = async () => {
+      if(nomePokemon === ''){
+        alert('Campos vázio')
+        return
+      }
     console.log("Pesquisando Pokémon:", nomePokemon);
     try {
       const response = await axios.get(
@@ -87,13 +100,19 @@ export default function Home() {
   
   
   
-
-  const clearSearch = () => {
+  const clearSearch = async () => {
+       
     setNomePokemon('');
     setPesquisa(null);
     setFilterClass('');
     navigate('/');
     setCurrentPage(1); // Resetar a página atual para 1
+      try{
+        const pokemons = await fetchAllPokemons()
+          setPokemonData(pokemons)
+      }catch (error) {
+        console.log('Error')
+      }
   };
 
   const scrollToTop = () => {
@@ -139,14 +158,15 @@ export default function Home() {
           <div className='pokemon-container' key={pesquisa.id}>
             <div className='descriptionPokemon'>
               <div className='nomePokemon'>
-                <h2>NAME:</h2>
+                <h2>Name:</h2>
                 <span>{pesquisa.name}</span>
               </div>
               <div className='classePokemon'>
-                <h2>CLASS:</h2>
+                <h2>Class:</h2>
                 <ul>
                   {pesquisa.types.map((type, index) => (
-                    <li key={index}>{type.type.name}</li>
+                    <li 
+                    key={index}>{type.type.name}</li>
                   ))}
                 </ul>
               </div>
@@ -172,11 +192,11 @@ export default function Home() {
                 <div className='pokemon-container' key={item.id}>
                   <div className='descriptionPokemon'>
                     <div className='nomePokemon'>
-                      <h2>NAME:</h2>
+                      <h2>Name</h2>
                       <span>{item.name}</span>
                     </div>
                     <div className='classePokemon'>
-                      <h2>CLASS:</h2>
+                      <h2>Class</h2>
                       <ul>
                         {item.types.map((type, index) => (
                           <li key={index}>{type.type.name}</li>
@@ -199,7 +219,7 @@ export default function Home() {
                 </div>
               ))
             ) : (
-              <div>Nenhum Pokémon encontrado.</div>
+              <div>Carregando...</div>
             )}
           </div>
         )}
